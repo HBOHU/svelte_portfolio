@@ -15,7 +15,7 @@
 
 	// Attach media query listener on mount hook
 	onMount(() => {
-		const mediaListener = window.matchMedia('(max-width: 767px)');
+		const mediaListener = window.matchMedia('(max-width: 650px)');
 
 		mediaListener.addListener(mediaQueryHandler);
 	});
@@ -59,7 +59,7 @@
 
 	.mobile-icon {
 		width: 25px;
-		height: 14px;
+		height: 18px;
 		position: relative;
 		cursor: pointer;
 	}
@@ -87,11 +87,11 @@
 	}
 
 	.mobile-icon:before {
-		width: 66%;
+		width: 100%;
 	}
 
 	.mobile-icon:after {
-		width: 33%;
+		width: 100%;
 	}
 
 	.middle-line {
@@ -109,11 +109,11 @@
 	.mobile-icon.active:before,
 	.mobile-icon.active:after {
 		top: 50%;
-		transform: rotate(-45deg);
+		transform: scale(1.3) rotate(-45deg);
 	}
 
 	.mobile-icon.active .middle-line {
-		transform: rotate(45deg);
+		transform: scale(1.3) rotate(45deg);
 	}
 
 	.navbar-list {
@@ -135,18 +135,15 @@
 	.navbar-list li {
 		list-style-type: none;
 		position: relative;
-		text-align: center;
 	}
 
 	.navbar-list a {
 		color: var(--menu-color);
 		text-decoration: none;
-		display: flex;
 		height: 45px;
 		align-items: center;
-		text-align: center;
-
 		font-size: 13px;
+		display: block;
 	}
 
 	@media only screen and (min-width: 650px) {
@@ -156,7 +153,6 @@
 
 		.navbar-list {
 			display: flex;
-			padding: 0;
 		}
 
 		.navbar-list a {
