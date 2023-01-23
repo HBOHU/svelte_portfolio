@@ -1,0 +1,42 @@
+{
+    "folders": [
+      {
+        "path": "src/routes",
+        "name": "Pages"
+      },
+      {
+        "path": "src/lib",
+        "name": "Lib"
+      },
+      {
+        "path": ".",
+        "name": "{ root }"
+      },
+    ],
+    "settings": {
+      "git.ignoreLimitWarning": true,
+      "editor.linkedEditing": true,
+      "editor.defaultFormatter": "svelte.svelte-vscode",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+      "eslint.format.enable": true,
+      "eslint.codeActionsOnSave.mode": "all",
+      "html.completion.attributeDefaultValue": "doublequotes",
+      "javascript.format.enable": true,
+      "files.eol": "\n",
+      "eslint.validate": [
+        "typescript",
+      ],
+    },
+    "extensions": {
+      "recommendations": [
+
+      ],
+      "unwantedRecommendations": [
+        
+      ]
+    }
+  }
+  
