@@ -12,8 +12,8 @@
 		--menu-mobile-icon: rgb(0, 0, 0);
 	}
 
-	@media only screen and (min-width: 650px) {
-		:root {
-		}
-	}
+	// @media only screen and (min-width: 650px) {
+	// 	:root {
+	// 	}
+	// }
 </style>

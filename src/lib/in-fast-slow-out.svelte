@@ -39,7 +39,7 @@
 
 <style>
 	#element {
-		position: absolute;
+		position: fixed;
 		overflow: hidden;
 		display: block;
 		height: 150px;

@@ -1,196 +1,82 @@
 <script>
-	import { onMount } from 'svelte';
+	import MobileMenu from './MobileMenu.svelte';
 	import IconPeacock from './svg/icon-peacock.svelte';
-
-	// Show mobile icon and display menu
 	let showMobileMenu = false;
-	const handleMobileIconClick = () => (showMobileMenu = !showMobileMenu);
-
-	// Media match query handler
-	const mediaQueryHandler = (/** @type {{ matches: any; }} */ e) => {
-		// Reset mobile state
-		if (!e.matches) {
-			showMobileMenu = false;
-		}
-	};
-
-	// Attach media query listener on mount hook
-	onMount(() => {
-		const mediaListener = window.matchMedia('(max-width: 650px)');
-
-		mediaListener.addListener(mediaQueryHandler);
-	});
 </script>
 
 <nav>
 	<div class="inner">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div on:click={handleMobileIconClick} class={`mobile-icon${showMobileMenu ? ' active' : ''}`}>
-			<div class="middle-line" />
-		</div>
-		<a href="/" class="name-title">
-			StiJN&nbsp
+		<MobileMenu bind:showMobileMenu />
+
+		<a href="/" class="logo-link">
 			<IconPeacock size={62} />
 		</a>
-		<div class={`navbar-list${showMobileMenu ? ' mobile' : ''}`}>
+
+		<div class={`navbar-list ${showMobileMenu ? ' mobile' : ''}`}>
 			<a href="/test">Projects</a>
-			<a href="#">About Me</a>
+			<a href="/#">About Me</a>
 		</div>
 	</div>
 </nav>
 
-<style lang="scss" deep>
+<style lang="scss">
 	nav {
-		background-color: var(--menu-background);
 		font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-		height: 45px;
 		width: 100%;
-		position: absolute;
-		top: 0px;
-		z-index: 100;
+		position: fixed;
+		z-index: 1000;
+	}
+	a {
+		color: var(--menu-color);
+		text-decoration: none;
+		text-align: center;
 	}
 
 	.inner {
-		width: 100%;
-		padding-left: 20px;
-		padding-right: 20px;
-
-		margin: auto;
-		box-sizing: border-box;
-		display: flex;
-		align-items: center;
-		height: 100%;
-	}
-
-	.mobile-icon {
-		width: 25px;
-		height: 18px;
-		position: relative;
-		cursor: pointer;
-	}
-
-	.mobile-icon:after,
-	.mobile-icon:before,
-	.middle-line {
-		content: '';
-		position: absolute;
-		width: 100%;
-		height: 2px;
-		background-color: var(--menu-mobile-icon);
-		transition: all 0.6s;
-		transform-origin: center;
-	}
-
-	.middle-line {
+		background-color: var(--menu-background);
 		top: 0;
-	}
-
-	.mobile-icon:after,
-	.middle-line {
-		bottom: 0;
-	}
-
-	.mobile-icon:after {
+		position: fixed;
 		width: 100%;
 	}
 
-	.middle-line {
-		margin: auto;
+	.logo-link {
+		margin-left: calc(50% - 25px);
 	}
 
-	.mobile-icon:hover:after,
-	.mobile-icon.active:before,
-	.mobile-icon.active:after,
-	.mobile-icon.active .middle-line {
-		width: 100%;
-	}
-
-	.mobile-icon.active:before {
-		display: none;
-	}
-
-	.mobile-icon:before {
-		animation: fadeInAnimation ease-out 2s;
-	}
-
-	@keyframes fadeInAnimation {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
-	.mobile-icon.active:after {
-		top: 50%;
-		transform: scale(1.3) rotate(-45deg);
-	}
-
-	.mobile-icon.active .middle-line {
-		transform: scale(1.3) rotate(45deg);
-	}
-
-	.name-title {
-		margin: auto;
-		font-size: 1.6em;
-		display: flex;
-		z-index: 99;
-	}
 	.navbar-list {
 		display: none;
-		width: 100%;
-		margin: 0;
-		// TODO: fix centering
-		padding-left: 34%;
-	}
-
-	.navbar-list.mobile {
-		background-color: var(--menu-background);
-		position: fixed;
-		height: calc(100% - 42px);
-		bottom: 0;
-		left: 0;
-		display: block;
 	}
 
 	.navbar-list a {
 		color: var(--menu-color);
 		text-decoration: none;
-		height: 2.2em;
-		font-size: 2.2em;
-		display: flex;
-		text-align: center;
-		margin-top: 18%;
+		display: block;
+		font-size: 2rem;
+		padding-block: 8vh;
+		align-self: center;
 	}
-
-	.name-title a {
-		display: none;
-		text-decoration: none;
-		color: var(--menu-color);
+	.navbar-list.mobile {
+		display: initial;
+		padding-left: 25px;
 	}
 
 	@media only screen and (min-width: 650px) {
-		.mobile-icon {
-			display: none;
+		.inner {
+			display: inline-flex;
+			position: fixed;
 		}
-		.name-title {
-			margin: 0;
-			width: 100%;
-			align-items: center;
+		.logo-link,
+		.navbar-list a {
+			margin: 6px;
+			display: initial;
+			font-size: 1.5rem;
+			padding-block: 0;
 		}
 
-		.name-title a {
-			padding-top: 10px;
-			display: initial;
-		}
 		.navbar-list {
 			display: flex;
-		}
-
-		.navbar-list a {
-			align-items: center;
-			font-size: 1.2em;
-			margin: auto;
+			margin-left: calc(50% - 100px);
 		}
 	}
 </style>
