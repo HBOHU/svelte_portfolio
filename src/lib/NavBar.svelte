@@ -29,13 +29,12 @@
 			<div class="middle-line" />
 		</div>
 		<div class="name-title">
-			<p>StiJN&nbsp</p>
-			<IconPeacock />
+			<a href="/">StiJN&nbsp</a>
+			<IconPeacock size={62} />
 		</div>
 		<div class={`navbar-list${showMobileMenu ? ' mobile' : ''}`}>
+			<a href="/test">Projects</a>
 			<a href="#">About Me</a>
-			<a href="#">Projects</a>
-			<a href="#">Coffee?</a>
 		</div>
 	</div>
 </nav>
@@ -123,40 +122,41 @@
 	}
 	.name-title {
 		margin: auto;
-		font-size: 1.4em;
+		font-size: 1.6em;
 		display: flex;
-	}
-
-	.name-title > p {
-		display: none;
+		z-index: 99;
 	}
 	.navbar-list {
 		display: none;
 		width: 100%;
 		margin: 0;
-		justify-content: space-between;
-		padding-inline-start: 46%;
+		// TODO: fix centering
+		padding-left: 34%;
 	}
 
 	.navbar-list.mobile {
 		background-color: var(--menu-background);
 		position: fixed;
-		display: block;
 		height: calc(100% - 42px);
 		bottom: 0;
 		left: 0;
+		display: block;
 	}
 
 	.navbar-list a {
 		color: var(--menu-color);
-		width: 100%;
 		text-decoration: none;
+		height: 2.2em;
+		font-size: 2.2em;
 		display: flex;
-		height: 45px;
 		text-align: center;
-		align-items: center;
-		font-size: 13px;
-		// margin: auto;
+		margin-top: 18%;
+	}
+
+	.name-title a {
+		display: none;
+		text-decoration: none;
+		color: var(--menu-color);
 	}
 
 	@media only screen and (min-width: 650px) {
@@ -169,7 +169,8 @@
 			align-items: center;
 		}
 
-		.name-title > p {
+		.name-title a {
+			padding-top: 10px;
 			display: initial;
 		}
 		.navbar-list {
@@ -177,7 +178,9 @@
 		}
 
 		.navbar-list a {
-			display: inline-flex;
+			align-items: center;
+			font-size: 1.2em;
+			margin: auto;
 		}
 	}
 </style>

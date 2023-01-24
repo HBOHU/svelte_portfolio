@@ -1,13 +1,9 @@
-<svg
-	width="38px"
-	height="38px"
-	viewBox="0 0 36 36"
-	xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink"
-	aria-hidden="true"
-	role="img"
-	class="iconify iconify--twemoji"
-	preserveAspectRatio="xMidYMid meet"
+<script>
+	// @ts-nocheck
+	export let size;
+</script>
+
+<svg viewBox="0 0 36 36" class="icon-peacock" width={size} height={size}
 	><path
 		fill="#292F33"
 		d="M14.5 36a.5.5 0 0 1-.354-.853L16 33.293V31.5a.5.5 0 0 1 1 0v2.207l-2.146 2.146A.5.5 0 0 1 14.5 36z"
