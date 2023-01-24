@@ -1,5 +1,6 @@
 <script>
 	import NavBar from '$lib/NavBar.svelte';
+	export const prerender = true;
 </script>
 
 <NavBar />
