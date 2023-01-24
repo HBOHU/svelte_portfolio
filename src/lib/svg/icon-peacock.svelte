@@ -1,5 +1,7 @@
 <script>
-	// @ts-nocheck
+	/**
+	 * @type {any}
+	 */
 	export let size;
 </script>
 
