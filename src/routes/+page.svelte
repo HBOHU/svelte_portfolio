@@ -1,14 +1,19 @@
-<!-- <script>
-	import Typewriter from 'svelte-typewriter';
-	import Comp1 from '$lib/in-fast-slow-out.svelte';
-	const newTypeWritterTyped = () => {
-		// console.log('test');
-	};
-</script> -->
+<script>
+	import BgDessert from '$lib/svg/bg-dessert.svelte';
+	import BgMountain from '$lib/svg/bg-mountain.svelte';
+</script>
 
-<!-- <Typewriter on:done={newTypeWritterTyped} mode={'loopRandom'} cursor{false}>
-	<h1>Testing effect</h1>
-	<h1>effect</h1>
-</Typewriter> -->
-
+<div class="wrapper">
+	<!--  -->
+	<BgDessert />
+	<BgMountain />
+</div>
 hello
+
+<style>
+	.wrapper {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+	}
+</style>
