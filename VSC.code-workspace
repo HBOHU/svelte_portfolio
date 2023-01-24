@@ -32,7 +32,7 @@
     },
     "extensions": {
       "recommendations": [
-
+        "svelte.svelte-vscode",
       ],
       "unwantedRecommendations": [
         

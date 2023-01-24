@@ -38,18 +38,14 @@
 <div bind:this={element} id="element" />
 
 <style>
-	:global(body) {
-		overflow: hidden;
-	}
-
 	#element {
+		position: absolute;
+		overflow: hidden;
 		display: block;
 		height: 150px;
 		width: 150px;
-		margin: 1rem;
 		padding: 0;
 
-		position: absolute;
 		top: calc(100% + 150px / 2);
 		left: 0;
 		transform: translate(-50%, -50%);

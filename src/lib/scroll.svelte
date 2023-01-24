@@ -145,7 +145,8 @@
 
 <style>
 	p {
-		width: 700px;
+		width: auto;
+		max-width: 800px;
 		height: auto;
 		margin: 1rem;
 		padding: 0;

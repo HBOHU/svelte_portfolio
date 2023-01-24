@@ -28,10 +28,10 @@
 		<div on:click={handleMobileIconClick} class={`mobile-icon${showMobileMenu ? ' active' : ''}`}>
 			<div class="middle-line" />
 		</div>
-		<div class="name-title">
-			<a href="/">StiJN&nbsp</a>
+		<a href="/" class="name-title">
+			StiJN&nbsp
 			<IconPeacock size={62} />
-		</div>
+		</a>
 		<div class={`navbar-list${showMobileMenu ? ' mobile' : ''}`}>
 			<a href="/test">Projects</a>
 			<a href="#">About Me</a>
@@ -77,11 +77,10 @@
 		width: 100%;
 		height: 2px;
 		background-color: var(--menu-mobile-icon);
-		transition: all 0.4s;
+		transition: all 0.6s;
 		transform-origin: center;
 	}
 
-	.mobile-icon:before,
 	.middle-line {
 		top: 0;
 	}
@@ -89,10 +88,6 @@
 	.mobile-icon:after,
 	.middle-line {
 		bottom: 0;
-	}
-
-	.mobile-icon:before {
-		width: 100%;
 	}
 
 	.mobile-icon:after {
@@ -103,7 +98,6 @@
 		margin: auto;
 	}
 
-	.mobile-icon:hover:before,
 	.mobile-icon:hover:after,
 	.mobile-icon.active:before,
 	.mobile-icon.active:after,
@@ -111,7 +105,22 @@
 		width: 100%;
 	}
 
-	.mobile-icon.active:before,
+	.mobile-icon.active:before {
+		display: none;
+	}
+
+	.mobile-icon:before {
+		animation: fadeInAnimation ease-out 2s;
+	}
+
+	@keyframes fadeInAnimation {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
 	.mobile-icon.active:after {
 		top: 50%;
 		transform: scale(1.3) rotate(-45deg);
@@ -120,6 +129,7 @@
 	.mobile-icon.active .middle-line {
 		transform: scale(1.3) rotate(45deg);
 	}
+
 	.name-title {
 		margin: auto;
 		font-size: 1.6em;
