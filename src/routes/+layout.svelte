@@ -7,8 +7,8 @@
 
 <style lang="scss">
 	:root {
-		--menu-background: rgb(218, 134, 86);
-		--menu-color: rgb(182, 26, 26);
+		--menu-background: rgb(255, 255, 255);
+		--menu-color: rgb(0, 0, 0);
 		--menu-mobile-icon: rgb(0, 0, 0);
 	}
 </style>

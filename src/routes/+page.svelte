@@ -8,11 +8,10 @@
 	// on:done{newTypeWritterTyped}
 </script>
 
+<!-- 
 <Typewriter mode={'loopRandom'} cursor{false}>
 	<h1>Testing effect</h1>
 	<h1>effect</h1>
 </Typewriter>
-<Comp1 />
-
-<style lang="scss">
-</style>
+<Comp1 /> -->
+hello
