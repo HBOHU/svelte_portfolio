@@ -9,15 +9,21 @@
 
 <style lang="scss">
 	:root {
-		--menu-background: rgb(255, 255, 255);
-		--menu-color: rgb(0, 0, 0);
-		--menu-mobile-icon: rgb(0, 0, 0);
+		--p-text-color: rgb(255, 255, 255);
+		--menu-background: rgb(89, 152, 163);
+		--menu-color: rgb(34, 34, 34);
+		--menu-mobile-icon: var(--p-text-color);
+
+		text-decoration: none;
 	}
 	.body-wrapper {
-		padding-top: 38px;
+		padding-top: 2px;
 	}
-	// @media only screen and (min-width: 650px) {
-	// 	:root {
-	// 	}
-	// }
+	@media only screen and (min-width: 650px) {
+		:root {
+		}
+		.body-wrapper {
+			padding-top: 14px;
+		}
+	}
 </style>
