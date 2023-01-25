@@ -1,6 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 	// Show mobile icon and display menu
 	export let showMobileMenu = false;
 	const handleMobileIconClick = () => (showMobileMenu = !showMobileMenu);
@@ -9,6 +12,11 @@
 	const mediaQueryHandler = (/** @type {{ matches: any; }} */ e) => {
 		if (!e.matches) {
 			showMobileMenu = false;
+		} else {
+			showMobileMenu = true;
+
+			dispatch('mobileview', showMobileMenu);
+			console.log('trigger');
 		}
 	};
 

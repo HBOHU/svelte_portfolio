@@ -1,6 +1,6 @@
 <script>
 	import MobileMenu from './MobileMenu.svelte';
-	import IconPeacock from './svg/icon-peacock.svelte';
+	import IconPeacock from '../static/svg/icon-peacock.svelte';
 	let showMobileMenu = false;
 </script>
 
@@ -14,8 +14,8 @@
 		</a>
 
 		<div class={`navbar-list ${showMobileMenu ? ' mobile' : ''}`}>
-			<a href="/test">Projects</a>
-			<a href="/#">About Me</a>
+			<a href="/projects">PROJECTS</a>
+			<a href="/coffee">COFFEE</a>
 		</div>
 	</div>
 </nav>
@@ -33,7 +33,7 @@
 		.inner {
 			position: relative;
 			background-color: var(--menu-background);
-			box-shadow: rgba(17, 12, 46, 0.15) 0 0 1vh 0;
+			box-shadow: rgba(17, 12, 46, 0.15) 0 10px 10px 0;
 			& > .logo-link {
 				margin-left: calc(50% - 25px);
 			}
@@ -56,6 +56,7 @@
 				display: flex;
 				& > .logo-link {
 					margin-left: calc(50% - 32px);
+					z-index: 999;
 				}
 				& > .navbar-list {
 					display: flex;
