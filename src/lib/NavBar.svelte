@@ -1,7 +1,8 @@
 <script>
 	import MobileMenu from './MobileMenu.svelte';
 	import IconPeacock from '../static/svg/icon-peacock.svelte';
-	let showMobileMenu = false;
+	$: showMobileMenu = false;
+	const handleMobileIconClick = () => (showMobileMenu = !showMobileMenu);
 </script>
 
 <nav>
@@ -9,13 +10,13 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<MobileMenu bind:showMobileMenu />
 
-		<a href="/" class="logo-link">
+		<a on:click={handleMobileIconClick} href="/" class="logo-link">
 			<IconPeacock size={62} />
 		</a>
 
 		<div class={`navbar-list ${showMobileMenu ? ' mobile' : ''}`}>
-			<a href="/projects">PROJECTS</a>
-			<a href="/coffee">COFFEE</a>
+			<a on:click={handleMobileIconClick} href="/projects">PROJECTS</a>
+			<a on:click={handleMobileIconClick} href="/coffee">COFFEE</a>
 		</div>
 	</div>
 </nav>

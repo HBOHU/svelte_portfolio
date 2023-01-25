@@ -1,22 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
 
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
 	// Show mobile icon and display menu
 	export let showMobileMenu = false;
-	const handleMobileIconClick = () => (showMobileMenu = !showMobileMenu);
 
 	// Media match query handler
 	const mediaQueryHandler = (/** @type {{ matches: any; }} */ e) => {
 		if (!e.matches) {
 			showMobileMenu = false;
-		} else {
-			showMobileMenu = true;
-
-			dispatch('mobileview', showMobileMenu);
-			console.log('trigger');
 		}
 	};
 
@@ -29,7 +20,10 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div on:click={handleMobileIconClick} class={`mobile-icon${showMobileMenu ? ' active' : ''}`}>
+<div
+	on:click={() => (showMobileMenu = !showMobileMenu)}
+	class={`mobile-icon${showMobileMenu ? ' active' : ''}`}
+>
 	<div id="mobile-menu-bar" />
 </div>
 
