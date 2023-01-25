@@ -4,7 +4,7 @@
 	$: mobileMenuOpen = false;
 	$: mobileMenuView = false;
 	const handleMobileIconClick = () => {
-		if (mobileMenuView === false) {
+		if (!mobileMenuView && mobileMenuOpen === true) {
 			mobileMenuOpen = !mobileMenuOpen;
 		}
 	};
@@ -20,8 +20,9 @@
 		</a>
 
 		<div class={`navbar-list ${mobileMenuOpen ? ' mobile' : ''}`}>
+			<!-- TODO: add arrows for both sides -->
 			<a on:click={handleMobileIconClick} href="/projects">PROJECTS</a>
-			<a on:click={handleMobileIconClick} href="/coffee">COFFEE</a>
+			<a on:click={handleMobileIconClick} href="/coffee">COFFEE </a>
 		</div>
 	</div>
 </nav>
