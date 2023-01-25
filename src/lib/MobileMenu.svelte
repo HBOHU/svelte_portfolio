@@ -2,12 +2,13 @@
 	import { onMount } from 'svelte';
 
 	// Show mobile icon and display menu
-	export let showMobileMenu = false;
+	export let mobileMenuView = false;
+	export let mobileMenuOpen = false;
 
 	// Media match query handler
 	const mediaQueryHandler = (/** @type {{ matches: any; }} */ e) => {
 		if (!e.matches) {
-			showMobileMenu = false;
+			mobileMenuView = false;
 		}
 	};
 
@@ -21,8 +22,8 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	on:click={() => (showMobileMenu = !showMobileMenu)}
-	class={`mobile-icon${showMobileMenu ? ' active' : ''}`}
+	on:click={() => (mobileMenuOpen = !mobileMenuOpen)}
+	class={`mobile-icon${mobileMenuOpen && !mobileMenuView ? ' active' : ''}`}
 >
 	<div id="mobile-menu-bar" />
 </div>

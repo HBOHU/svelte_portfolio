@@ -1,20 +1,25 @@
 <script>
 	import MobileMenu from './MobileMenu.svelte';
 	import IconPeacock from '../static/svg/icon-peacock.svelte';
-	$: showMobileMenu = false;
-	const handleMobileIconClick = () => (showMobileMenu = !showMobileMenu);
+	$: mobileMenuOpen = false;
+	$: mobileMenuView = false;
+	const handleMobileIconClick = () => {
+		if (mobileMenuView === false) {
+			mobileMenuOpen = !mobileMenuOpen;
+		}
+	};
 </script>
 
 <nav>
 	<div class="inner">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<MobileMenu bind:showMobileMenu />
+		<MobileMenu bind:mobileMenuOpen />
 
 		<a on:click={handleMobileIconClick} href="/" class="logo-link">
 			<IconPeacock size={62} />
 		</a>
 
-		<div class={`navbar-list ${showMobileMenu ? ' mobile' : ''}`}>
+		<div class={`navbar-list ${mobileMenuOpen ? ' mobile' : ''}`}>
 			<a on:click={handleMobileIconClick} href="/projects">PROJECTS</a>
 			<a on:click={handleMobileIconClick} href="/coffee">COFFEE</a>
 		</div>
@@ -63,6 +68,7 @@
 					display: flex;
 					position: fixed;
 					width: 100%;
+					align-self: center;
 					a {
 						padding: 26px 64px;
 						margin: 0;
