@@ -26,6 +26,7 @@
 		width: 100%;
 		position: fixed;
 		z-index: 1000;
+		top: 0px;
 	}
 	a {
 		color: var(--menu-color);
@@ -36,7 +37,7 @@
 	.inner {
 		background-color: var(--menu-background);
 		top: 0;
-		position: fixed;
+		position: relative;
 		width: 100%;
 	}
 
@@ -65,6 +66,7 @@
 		.inner {
 			display: inline-flex;
 			position: fixed;
+			box-shadow: rgba(17, 12, 46, 0.15) 0px 0px 1vh 0px;
 		}
 		.logo-link,
 		.navbar-list a {
@@ -76,7 +78,12 @@
 
 		.navbar-list {
 			display: flex;
-			margin-left: calc(50% - 100px);
+			margin-left: calc(50% - 240px);
+			a {
+				// margin-inline: 80px;
+				padding: 26px 64px;
+				margin: 0;
+			}
 		}
 	}
 </style>
