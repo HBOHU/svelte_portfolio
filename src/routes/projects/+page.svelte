@@ -10,26 +10,32 @@
 
 	let columns = 12;
 
-	const randomHexColorCode = () => {
-		let color = '#';
+	const randomHexColorCode = (color) => {
+		let lightHexColor = '#';
 		for (let i = 0; i < 3; i++)
-			color += ('0' + Math.floor(((1 + Math.random()) * Math.pow(16, 2)) / 2).toString(16)).slice(
-				-2
-			);
-		return color;
+			lightHexColor += (
+				'0' + Math.floor(((1 + Math.random()) * Math.pow(16, 2)) / 2).toString(16)
+			).slice(-2);
+		return lightHexColor;
 	};
 	/**
-	 * @param {number} col
+	 * @param {number} columns
 	 * @param {any[]} cards
 	 */
-	function generateLayout(col, cards) {
+	function generateLayout(columns, cards) {
 		return cards.map(function (/** @type {any} */ item, /** @type {number} */ i) {
-			const y = Math.ceil(Math.random() * 3) + 1;
+			const boxSize = Math.ceil(Math.random() * 3) / 2 + 2;
+			const titleLength = cards[i].title.length;
+
 			return {
-				// TODO: int object name needs to be same as let columns
-				12: gridHelp.item({ x: (i * 4) % 100, y: Math.floor(i / columns) * y, w: y, h: y }),
+				12: gridHelp.item({
+					x: (i * 4) % 100,
+					y: Math.floor(i / columns) * boxSize,
+					w: Math.floor(titleLength / boxSize),
+					h: Math.floor(titleLength / boxSize / 2.5)
+				}),
 				id: id(),
-				data: Object.assign(cards[i], { color: randomHexColorCode() })
+				data: Object.assign(cards[i], { color: randomHexColorCode(null || cards[i].color) })
 			};
 		});
 	}
@@ -37,6 +43,7 @@
 </script>
 
 <div class="project-container">
+	<!--  TODO: set min-width for each card, matching title length-->
 	<Grid
 		bind:items
 		rowHeight={150}
@@ -47,7 +54,7 @@
 		fillSpace={true}
 	>
 		<div class="project-card" style="background-color: {dataItem.data.color};">
-			<h1 class="title">{dataItem.data.name}</h1>
+			<h1 class="title">{dataItem.data.title}</h1>
 			<div class="footer resizer" on:pointerdown={resizePointerDown}>
 				<IconExpand />
 			</div>
