@@ -31,8 +31,8 @@
 				12: gridHelp.item({
 					x: (i * 4) % 100,
 					y: Math.floor(i / columns) * boxSize,
-					w: Math.floor(titleLength / boxSize),
-					h: Math.floor(titleLength / boxSize / 2.5)
+					w: Math.floor(titleLength / boxSize + 3),
+					h: Math.floor(titleLength / 8)
 				}),
 				id: id(),
 				data: Object.assign(cards[i], { color: randomHexColorCode(null || cards[i].color) })
@@ -52,6 +52,7 @@
 		cols={[[100, columns]]}
 		let:resizePointerDown
 		fillSpace={true}
+		class="grid-item"
 	>
 		<div class="project-card" style="background-color: {dataItem.data.color};">
 			<h1 class="title">{dataItem.data.title}</h1>
@@ -67,8 +68,8 @@
 			>
 				<IconLink />
 			</a>
-		</div>
-	</Grid>
+		</div></Grid
+	>
 </div>
 
 <style lang="scss">
@@ -84,27 +85,36 @@
 	}
 	.footer {
 		position: absolute;
-		bottom: 5px;
+		bottom: 0px;
 		&.resizer {
 			cursor: move;
-			right: 15px;
+			padding: 10px;
+			right: 10px;
 		}
 		&.link {
-			left: 15px;
+			left: 5px;
+			padding: 10px;
 			z-index: 999;
 		}
 	}
 	.project-container {
 		overflow-y: hidden;
+		height: 100%;
+	}
+	.grid-item {
+		padding: 5px;
 	}
 	.project-card {
 		height: 100%;
 		border-radius: 12px;
-		padding: 5px;
+		overflow: hidden;
+		box-shadow: rgba(17, 12, 46, 0.15) 0 10px 10px 0;
+		min-width: 100px;
 
 		.title {
 			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 			margin: 10px;
+			word-break: break-word;
 		}
 
 		@media only screen and (min-width: 650px) {
