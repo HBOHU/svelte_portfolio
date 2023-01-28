@@ -8,7 +8,7 @@
 
 	const id = () => '_' + Math.random().toString(36).substr(2, 9);
 
-	let columns = 12;
+	let columns = 24;
 
 	const randomHexColorCode = (color) => {
 		let lightHexColor = '#';
@@ -28,18 +28,18 @@
 			const titleLength = cards[i].title.length;
 
 			return {
-				12: gridHelp.item({
+				24: gridHelp.item({
 					x: (i * 4) % 100,
-					y: Math.floor(i / columns) * boxSize,
-					w: Math.floor(titleLength / boxSize + 3),
-					h: Math.floor(titleLength / 8)
+					y: i * boxSize,
+					w: Math.floor((titleLength / 4) * boxSize + 2),
+					h: Math.floor(boxSize / 1.5)
 				}),
 				id: id(),
 				data: Object.assign(cards[i], { color: randomHexColorCode(null || cards[i].color) })
 			};
 		});
 	}
-	let items = gridHelp.adjust(generateLayout(6, cards), columns);
+	let items = gridHelp.adjust(generateLayout(24, cards), columns);
 </script>
 
 <div class="project-container">
@@ -113,6 +113,7 @@
 
 		.title {
 			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 3em;
 			margin: 10px;
 			word-break: break-word;
 		}
