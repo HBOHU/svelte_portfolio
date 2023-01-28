@@ -1,58 +1,68 @@
 <script>
 	import IconExpand from '../../static/svg/icon-expand.svelte';
 	import IconLink from '../../static/svg/icon-link.svelte';
-	import cards from '$lib/assets/projects.json';
+	import projectsObject from '$lib/assets/projects.json';
 
 	import Grid from 'svelte-grid';
 	import gridHelp from 'svelte-grid/build/helper/index.mjs';
 
-	const id = () => '_' + Math.random().toString(36).substr(2, 9);
+	const columns = 12;
+	const projectData = projectsObject;
 
-	let columns = 24;
+	// TODO: make function global
+	const isMobileView = () => {
+		return true;
+	};
 
 	const randomHexColorCode = (color) => {
-		let lightHexColor = '#';
-		for (let i = 0; i < 3; i++)
-			lightHexColor += (
-				'0' + Math.floor(((1 + Math.random()) * Math.pow(16, 2)) / 2).toString(16)
-			).slice(-2);
-		return lightHexColor;
+		if (color === undefined) {
+			let lightHexColor = '#';
+			for (let i = 0; i < 3; i++)
+				lightHexColor += (
+					'0' + Math.floor(((1 + Math.random()) * Math.pow(16, 2)) / 2).toString(16)
+				).slice(-2);
+			return lightHexColor;
+		} else {
+			return '#' + color.toString();
+		}
 	};
-	/**
-	 * @param {number} columns
-	 * @param {any[]} cards
-	 */
-	function generateLayout(columns, cards) {
-		return cards.map(function (/** @type {any} */ item, /** @type {number} */ i) {
-			const boxSize = Math.ceil(Math.random() * 3) / 2 + 2;
-			const titleLength = cards[i].title.length;
 
-			return {
-				24: gridHelp.item({
-					x: (i * 4) % 100,
-					y: i * boxSize,
-					w: Math.floor((titleLength / 4) * boxSize + 2),
-					h: Math.floor(boxSize / 1.5)
-				}),
-				id: id(),
-				data: Object.assign(cards[i], { color: randomHexColorCode(null || cards[i].color) })
-			};
+	/**
+	 * @param {any[]} data
+	 */
+	function generateLayout(data) {
+		return data.map(function (/** @type {any} */ item, /** @type {number} */ i) {
+			let projectTitle = item.title;
+
+			if (isMobileView() === true) {
+				return {
+					// next object name must be the same as the columns const
+					12: gridHelp.item({
+						x: i + 1,
+						y: i * 2,
+						w: Math.floor(projectTitle.split(' ')[0].length + 2),
+						h: Math.floor(projectTitle.length / 12 + 1)
+					}),
+					id: i,
+					data: Object.assign(item, { color: randomHexColorCode(null || item.color) })
+				};
+			} else {
+				console.log('render big screen');
+			}
 		});
 	}
-	let items = gridHelp.adjust(generateLayout(24, cards), columns);
+	let items = gridHelp.adjust(generateLayout(projectData), columns);
 </script>
 
 <div class="project-container">
 	<!--  TODO: set min-width for each card, matching title length-->
 	<Grid
 		bind:items
-		rowHeight={150}
-		let:item
+		rowHeight={100}
 		let:dataItem
 		cols={[[100, columns]]}
 		let:resizePointerDown
 		fillSpace={true}
-		class="grid-item"
 	>
 		<div class="project-card" style="background-color: {dataItem.data.color};">
 			<h1 class="title">{dataItem.data.title}</h1>
@@ -100,9 +110,6 @@
 	.project-container {
 		overflow-y: hidden;
 		height: 100%;
-	}
-	.grid-item {
-		padding: 5px;
 	}
 	.project-card {
 		height: 100%;
