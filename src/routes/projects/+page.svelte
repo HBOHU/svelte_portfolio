@@ -11,10 +11,10 @@
 
 	// TODO: make function global
 	const isMobileView = () => {
-		return true;
+		return false;
 	};
 
-	const randomHexColorCode = (color) => {
+	const randomHexColorCode = (/** @type {{ toString: () => string; } | undefined} */ color) => {
 		if (color === undefined) {
 			let lightHexColor = '#';
 			for (let i = 0; i < 3; i++)
@@ -27,30 +27,58 @@
 		}
 	};
 
+	const mobileLayout = (
+		/** @type {number} */ i,
+		/** @type {{ title: any; color: any; }} */ item
+	) => {
+		let projectTitle = item.title;
+		return {
+			// next object name must be the same as the columns const
+			[columns]: gridHelp.item({
+				x: i + 1,
+				y: i * 2,
+				w: Math.floor(projectTitle.split(' ')[0].length + 2),
+				h: Math.floor(projectTitle.length / 12 + 1)
+			}),
+			id: i,
+			data: Object.assign(item, { color: randomHexColorCode(null || item.color) })
+		};
+	};
+
+	const defaultLayout = (
+		/** @type {number} */ i,
+		/** @type {{ title: any; color: any; }} */ item
+	) => {
+		let projectTitle = item.title;
+		return {
+			// next object name must be the same as the columns const
+			[columns]: gridHelp.item({
+				x: i + 1,
+				y: i * 2,
+				w: Math.floor(projectTitle.length / 4) + 1,
+				// TODO: fix 
+				h: Math.floor(projectTitle.split(' ')[0].length / )
+			}),
+			id: i,
+			data: Object.assign(item, { color: randomHexColorCode(null || item.color) })
+		};
+	};
+
 	/**
 	 * @param {any[]} data
 	 */
 	function generateLayout(data) {
 		return data.map(function (/** @type {any} */ item, /** @type {number} */ i) {
-			let projectTitle = item.title;
-
 			if (isMobileView() === true) {
-				return {
-					// next object name must be the same as the columns const
-					12: gridHelp.item({
-						x: i + 1,
-						y: i * 2,
-						w: Math.floor(projectTitle.split(' ')[0].length + 2),
-						h: Math.floor(projectTitle.length / 12 + 1)
-					}),
-					id: i,
-					data: Object.assign(item, { color: randomHexColorCode(null || item.color) })
-				};
+				console.log('rendered projects for mobile screen');
+				return mobileLayout(i, item);
 			} else {
-				console.log('render big screen');
+				console.log('rendered projects for big screen');
+				return defaultLayout(i, item);
 			}
 		});
 	}
+	// TODO: actually first columns are the rows (in the gen function)
 	let items = gridHelp.adjust(generateLayout(projectData), columns);
 </script>
 
