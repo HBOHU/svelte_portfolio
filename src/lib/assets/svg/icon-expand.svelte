@@ -1,4 +1,4 @@
-<svg fill="#FFFFFF" height="16px" width="16px" viewBox="0 0 242.133 242.133" xml:space="preserve">
+<svg fill="#000000" height="16px" width="16px" viewBox="0 0 242.133 242.133" xml:space="preserve">
 	<path
 		id="XMLID_15_"
 		d="M227.133,83.033c8.283,0,15-6.716,15-15V15c0-8.284-6.717-15-15-15H174.1c-8.284,0-15,6.716-15,15
