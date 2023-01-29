@@ -1,8 +1,10 @@
 <script>
 	import MobileMenu from './MobileMenu.svelte';
-	import IconPeacock from '../static/svg/icon-peacock.svelte';
+	import IconPeacock from '$lib/assets/svg/icon-peacock.svelte';
+
 	$: mobileMenuOpen = false;
 	$: mobileMenuView = false;
+
 	const handleMobileIconClick = () => {
 		if (!mobileMenuView && mobileMenuOpen === true) {
 			mobileMenuOpen = !mobileMenuOpen;

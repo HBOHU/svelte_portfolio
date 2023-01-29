@@ -1,6 +1,6 @@
 <script>
-	import IconExpand from '../../static/svg/icon-expand.svelte';
-	import IconLink from '../../static/svg/icon-link.svelte';
+	import IconExpand from '$lib/assets/svg/icon-expand.svelte';
+	import IconLink from '$lib/assets/svg/icon-link.svelte';
 	import projectsObject from '$lib/assets/projects.json';
 
 	import Grid from 'svelte-grid';
@@ -11,10 +11,10 @@
 
 	// TODO: make function global
 	const isMobileView = () => {
-		return false;
+		return true;
 	};
 
-	const randomHexColorCode = (/** @type {{ toString: () => string; } | undefined} */ color) => {
+	const randomHexColorCode = (/** @type {string | undefined} */ color) => {
 		if (color === undefined) {
 			let lightHexColor = '#';
 			for (let i = 0; i < 3; i++)
@@ -23,17 +23,13 @@
 				).slice(-2);
 			return lightHexColor;
 		} else {
-			return '#' + color.toString();
+			return '#' + color;
 		}
 	};
 
-	const mobileLayout = (
-		/** @type {number} */ i,
-		/** @type {{ title: any; color: any; }} */ item
-	) => {
+	const mobileSize = (/** @type {number} */ i, /** @type {{ title: any; color: any; }} */ item) => {
 		let projectTitle = item.title;
 		return {
-			// next object name must be the same as the columns const
 			[columns]: gridHelp.item({
 				x: i + 1,
 				y: i * 2,
@@ -41,26 +37,24 @@
 				h: Math.floor(projectTitle.length / 12 + 1)
 			}),
 			id: i,
-			data: Object.assign(item, { color: randomHexColorCode(null || item.color) })
+			data: Object.assign(item, { color: randomHexColorCode(item.color || undefined) })
 		};
 	};
 
-	const defaultLayout = (
+	const defaultSize = (
 		/** @type {number} */ i,
 		/** @type {{ title: any; color: any; }} */ item
 	) => {
 		let projectTitle = item.title;
 		return {
-			// next object name must be the same as the columns const
 			[columns]: gridHelp.item({
 				x: i + 1,
 				y: i * 2,
 				w: Math.floor(projectTitle.length / 4) + 1,
-				// TODO: fix 
-				h: Math.floor(projectTitle.split(' ')[0].length / )
+				h: Math.floor(projectTitle.split(' ')[0].length / 2)
 			}),
 			id: i,
-			data: Object.assign(item, { color: randomHexColorCode(null || item.color) })
+			data: Object.assign(item, { color: randomHexColorCode(item.color || undefined) })
 		};
 	};
 
@@ -70,11 +64,9 @@
 	function generateLayout(data) {
 		return data.map(function (/** @type {any} */ item, /** @type {number} */ i) {
 			if (isMobileView() === true) {
-				console.log('rendered projects for mobile screen');
-				return mobileLayout(i, item);
+				return mobileSize(i, item);
 			} else {
-				console.log('rendered projects for big screen');
-				return defaultLayout(i, item);
+				return defaultSize(i, item);
 			}
 		});
 	}
