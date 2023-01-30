@@ -1,18 +1,15 @@
 <script>
+	import projectsObject from '$lib/assets/projects.json';
+	import { ismobileView } from '$lib/stores/main.js';
+
 	import IconExpand from '$lib/assets/svg/icon-expand.svelte';
 	import IconLink from '$lib/assets/svg/icon-link.svelte';
-	import projectsObject from '$lib/assets/projects.json';
 
 	import Grid from 'svelte-grid/src/index.svelte';
 	import gridHelp from 'svelte-grid/build/helper/index.mjs';
 
 	const columns = 12;
 	const projectData = projectsObject.sort(() => Math.random() - 0.5);
-
-	// TODO: make function global => MobileMenu.svelte
-	const isMobileView = () => {
-		return false;
-	};
 
 	const randomHexColorCode = (/** @type {string | undefined} */ color) => {
 		if (color === undefined) {
@@ -26,7 +23,7 @@
 			return '#' + color;
 		}
 	};
-
+	// TODO: cries for optimalization
 	const mobileSize = (/** @type {number} */ i, /** @type {{ title: any; color: any; }} */ item) => {
 		let projectTitle = item.title;
 		return {
@@ -44,7 +41,7 @@
 			data: Object.assign(item, { color: randomHexColorCode(item.color || undefined) })
 		};
 	};
-
+	// TODO: cries for optimalization too
 	const defaultSize = (
 		/** @type {number} */ i,
 		/** @type {{ title: string; description: string; color: string;  }} */ item
@@ -56,7 +53,7 @@
 				x: i,
 				y: i,
 				w: defaultW,
-				h: Math.floor(item.description.length / (6 * defaultW)),
+				h: Math.floor(item.description.length / (10 * defaultW)) + 2,
 				min: {
 					w: Math.floor(projectTitle.split(' ')[0].length / 3),
 					h: 2
@@ -72,21 +69,20 @@
 	 */
 	function generateLayout(data) {
 		return data.map(function (/** @type {any} */ item, /** @type {number} */ i) {
-			if (isMobileView() === true) {
+			if ($ismobileView) {
 				return mobileSize(i, item);
 			} else {
 				return defaultSize(i, item);
 			}
 		});
 	}
-	// TODO: actually first columns are the rows (in the gen function)
+
+	console.log('is mobile screen ' + $ismobileView);
 	let items = gridHelp.adjust(generateLayout(projectData), columns);
 </script>
 
 <div class="project-container">
-	<!--  TODO: set min-width for each card, matching title length-->
 	<Grid
-		data-sveltekit-preload-data="off"
 		bind:items
 		rowHeight={50}
 		let:dataItem
@@ -94,7 +90,6 @@
 		let:resizePointerDown
 		fillSpace={true}
 	>
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div class="project-card" style="background-color: {dataItem.data.color};">
 			<h1 class="title">{dataItem.data.title}</h1>
 			<p>{dataItem.data.description}</p>
@@ -105,11 +100,9 @@
 				class="footer link"
 				on:pointerdown={resizePointerDown}
 			>
-				<!-- TODO: make gsap scale and twinkle this -->
 				<IconLink />
 			</a>
 			<div class="footer resizer" on:pointerdown={resizePointerDown}>
-				<!-- TODO: make gsap scale and twinkle this -->
 				<IconExpand />
 			</div>
 		</div></Grid
@@ -129,17 +122,16 @@
 	}
 
 	.footer {
-		position: absolute;
 		bottom: 0px;
+		position: absolute;
+		padding: 10px;
+		z-index: 999;
 		&.resizer {
 			cursor: move;
-			padding: 10px;
 			right: 10px;
 		}
 		&.link {
 			left: 5px;
-			padding: 10px;
-			z-index: 999;
 		}
 	}
 	.project-container {

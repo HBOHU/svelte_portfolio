@@ -1,13 +1,14 @@
 <script>
+	import { ismobileView } from '$lib/stores/main.js';
+
 	import MobileMenu from './MobileMenu.svelte';
 	import IconPeacock from '$lib/assets/svg/icon-peacock.svelte';
 
-	$: mobileMenuOpen = false;
-	$: mobileMenuView = false;
+	$: isMobileMenuOpen = false;
 
 	const handleMobileIconClick = () => {
-		if (!mobileMenuView && mobileMenuOpen === true) {
-			mobileMenuOpen = !mobileMenuOpen;
+		if (isMobileMenuOpen === true) {
+			isMobileMenuOpen = !isMobileMenuOpen;
 		}
 	};
 </script>
@@ -15,13 +16,13 @@
 <nav>
 	<div class="inner">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<MobileMenu bind:mobileMenuOpen />
+		<MobileMenu bind:isMobileMenuOpen />
 
 		<a on:click={handleMobileIconClick} href="/" class="logo-link">
 			<IconPeacock size={62} />
 		</a>
 
-		<div class={`navbar-list ${mobileMenuOpen ? ' mobile' : ''}`}>
+		<div class={`navbar-list ${isMobileMenuOpen ? ' mobile' : ''}`}>
 			<!-- TODO: add arrows for both sides -->
 			<a on:click={handleMobileIconClick} href="/projects">PROJECTS</a>
 			<a on:click={handleMobileIconClick} href="/coffee">COFFEE </a>

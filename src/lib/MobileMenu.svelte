@@ -1,29 +1,11 @@
 <script>
-	import { onMount } from 'svelte';
-
-	// Show mobile icon and display menu
-	export let mobileMenuView = false;
-	export let mobileMenuOpen = false;
-
-	// Media match query handler
-	const mediaQueryHandler = (/** @type {{ matches: any; }} */ e) => {
-		if (!e.matches) {
-			mobileMenuView = false;
-		}
-	};
-
-	// Attach media query listener on mount hook
-	onMount(() => {
-		const mediaListener = window.matchMedia('(max-width: 650px)');
-
-		mediaListener.addListener(mediaQueryHandler);
-	});
+	export let isMobileMenuOpen = false;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	on:click={() => (mobileMenuOpen = !mobileMenuOpen)}
-	class={`mobile-icon${mobileMenuOpen && !mobileMenuView ? ' active' : ''}`}
+	on:click={() => (isMobileMenuOpen = !isMobileMenuOpen)}
+	class={`mobile-icon${isMobileMenuOpen ? ' active' : ''}`}
 >
 	<div id="mobile-menu-bar" />
 </div>
