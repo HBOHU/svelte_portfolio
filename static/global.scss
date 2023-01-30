@@ -1,12 +1,13 @@
 :root {
     --p-text-color: rgb(255, 255, 255);
-    --p-main-color: rgb(89, 152, 163);
-    --p-bg-color: rgb(255, 255, 255);
-    --menu-background: rgb(89, 152, 163);
+    --p-main-color: #0098A3;
+    --p-bg-color: #F9DBBD;
+    --menu-background: #0098A3;
     --menu-color: rgb(34, 34, 34);
     --menu-mobile-icon: var(--p-text-color);
 
     text-decoration: none;
+    color: black
 }
 .body-wrapper {
     padding-top: 21px;

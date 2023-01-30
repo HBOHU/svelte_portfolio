@@ -156,7 +156,6 @@
 			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 			font-size: 1.2em;
 			margin: 10px;
-			color: rgb(0, 0, 0);
 		}
 
 		@media only screen and (min-width: 650px) {
