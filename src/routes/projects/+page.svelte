@@ -33,8 +33,12 @@
 			[columns]: gridHelp.item({
 				x: i + 1,
 				y: i * 2,
-				w: Math.floor(projectTitle.split(' ')[0].length + 2),
-				h: Math.floor(projectTitle.length / 12 + 1)
+				w: Math.floor(projectTitle.split(' ')[0].length / 3) + 5,
+				h: Math.floor(projectTitle.length / 8) + 1,
+				min: {
+					w: 3,
+					h: 3
+				}
 			}),
 			id: i,
 			data: Object.assign(item, { color: randomHexColorCode(item.color || undefined) })
@@ -48,10 +52,14 @@
 		let projectTitle = item.title;
 		return {
 			[columns]: gridHelp.item({
-				x: i + 1,
-				y: i * 2,
+				x: 0,
+				y: 0,
 				w: Math.floor(projectTitle.length / 4) + 1,
-				h: Math.floor(projectTitle.split(' ')[0].length / 2)
+				h: Math.floor(projectTitle.split(' ')[0].length / 3) + 1,
+				min: {
+					w: Math.floor(projectTitle.split(' ')[0].length / 3) + 1,
+					h: 3
+				}
 			}),
 			id: i,
 			data: Object.assign(item, { color: randomHexColorCode(item.color || undefined) })
@@ -77,6 +85,7 @@
 <div class="project-container">
 	<!--  TODO: set min-width for each card, matching title length-->
 	<Grid
+		data-sveltekit-preload-data="off"
 		bind:items
 		rowHeight={100}
 		let:dataItem
@@ -84,11 +93,10 @@
 		let:resizePointerDown
 		fillSpace={true}
 	>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div class="project-card" style="background-color: {dataItem.data.color};">
 			<h1 class="title">{dataItem.data.title}</h1>
-			<div class="footer resizer" on:pointerdown={resizePointerDown}>
-				<IconExpand />
-			</div>
+			<p>{dataItem.data.description}</p>
 			<a
 				href={'http://' + dataItem.data.link}
 				rel="external noreferrer"
@@ -96,14 +104,19 @@
 				class="footer link"
 				on:pointerdown={resizePointerDown}
 			>
+				<!-- TODO: make gsap scale and twinkle this -->
 				<IconLink />
 			</a>
+			<div class="footer resizer" on:pointerdown={resizePointerDown}>
+				<!-- TODO: make gsap scale and twinkle this -->
+				<IconExpand />
+			</div>
 		</div></Grid
 	>
 </div>
 
 <style lang="scss">
-	:global(.svlt-grid-shadow) {
+	:global(.svlt-grid-shadow, svelte-grid-resizer::after) {
 		background: rgba(255, 255, 255, 0) !important;
 	}
 
@@ -113,6 +126,7 @@
 	:global(.svlt-grid-resizer::after) {
 		border-color: rgba(255, 255, 255, 0) !important;
 	}
+
 	.footer {
 		position: absolute;
 		bottom: 0px;
@@ -136,12 +150,18 @@
 		border-radius: 12px;
 		overflow: hidden;
 		box-shadow: rgba(17, 12, 46, 0.15) 0 10px 10px 0;
-		min-width: 100px;
 
+		p {
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 2em;
+			margin: 10px;
+			color: rgb(80, 80, 80);
+		}
 		.title {
 			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 			font-size: 3em;
 			margin: 10px;
+			margin-bottom: 52px;
 			word-break: break-word;
 		}
 

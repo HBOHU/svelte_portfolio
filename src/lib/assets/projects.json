@@ -1,27 +1,27 @@
 [
 	{
 		"title": "Business card as QR",
-		"link": "stijn.hopto.org/qr",
+		"link": "http://stijn.hopto.org/qr",
 		"description": "Simple concept turned into overweekend project, not so pollished or optimazed but does the job. Statisfing to see that there are already business build around this concept."
 	},
 	{
 		"title": "Websocket Robot",
-		"link": "stijn.hopto.org/qr",
+		"link": "http://stijn.hopto.org/portfolio",
 		"description": "Wild project, did not expect that we got approval of building a firecappeble tank. By taking full advantage of the websocket protocol over a Wireless Local Area Network, we were able to have real time control of the tank with live camera feed ( the Raspberry Pi is hosting its own websocket server ), with your phone"
 	},
 	{
 		"title": "Personal Trainer",
-		"link": "getfitbyabs.nl",
+		"link": "http://getfitbyabs.nl",
 		"description": "One of my first projects that made on to the world wide web. It is a personal trainer's website with some beginner features."
 	},
 	{
 		"title": "Meet app",
-		"link": "getfitbyabs.nl",
+		"link": "http://stijn.hopto.org/hboi",
 		"description": "One of my first projects that made on to the world wide web. It is a personal trainer's website with some beginner features."
 	},
 	{
 		"title": "Swipe Sale",
-		"link": "getfitbyabs.nl",
+		"link": "http://swipesale.nl",
 		"description": "One of my first projects that made on to the world wide web. It is a personal trainer's website with some beginner features."
 	}
 ]
