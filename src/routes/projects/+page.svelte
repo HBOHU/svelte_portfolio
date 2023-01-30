@@ -11,7 +11,7 @@
 
 	// TODO: make function global => MobileMenu.svelte
 	const isMobileView = () => {
-		return true;
+		return false;
 	};
 
 	const randomHexColorCode = (/** @type {string | undefined} */ color) => {
@@ -31,13 +31,13 @@
 		let projectTitle = item.title;
 		return {
 			[columns]: gridHelp.item({
-				x: i + 1,
-				y: i * 2,
-				w: Math.floor(projectTitle.split(' ')[0].length / 3) + 5,
-				h: Math.floor(projectTitle.length / 8) + 1,
+				x: i,
+				y: i,
+				w: 6,
+				h: Math.floor(projectTitle.length / 7) + 1,
 				min: {
-					w: 3,
-					h: 3
+					w: 6,
+					h: 2
 				}
 			}),
 			id: i,
@@ -47,18 +47,19 @@
 
 	const defaultSize = (
 		/** @type {number} */ i,
-		/** @type {{ title: any; color: any; }} */ item
+		/** @type {{ title: string; description: string; color: string;  }} */ item
 	) => {
 		let projectTitle = item.title;
+		let defaultW = Math.floor(projectTitle.length / 7) + 2;
 		return {
 			[columns]: gridHelp.item({
-				x: 0,
-				y: 0,
-				w: Math.floor(projectTitle.length / 4) + 1,
-				h: Math.floor(projectTitle.split(' ')[0].length / 3) + 1,
+				x: i,
+				y: i,
+				w: defaultW,
+				h: Math.floor(item.description.length / (6 * defaultW)),
 				min: {
-					w: Math.floor(projectTitle.split(' ')[0].length / 3) + 1,
-					h: 3
+					w: Math.floor(projectTitle.split(' ')[0].length / 3),
+					h: 2
 				}
 			}),
 			id: i,
@@ -87,9 +88,9 @@
 	<Grid
 		data-sveltekit-preload-data="off"
 		bind:items
-		rowHeight={100}
+		rowHeight={50}
 		let:dataItem
-		cols={[[100, columns]]}
+		cols={[[50, columns]]}
 		let:resizePointerDown
 		fillSpace={true}
 	>
@@ -142,8 +143,8 @@
 		}
 	}
 	.project-container {
-		overflow-y: hidden;
-		height: 100%;
+		overflow-x: hidden;
+		height: 90vh;
 	}
 	.project-card {
 		height: 100%;
@@ -151,22 +152,28 @@
 		overflow: hidden;
 		box-shadow: rgba(17, 12, 46, 0.15) 0 10px 10px 0;
 
-		p {
-			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-			font-size: 2em;
-			margin: 10px;
-			color: rgb(80, 80, 80);
-		}
 		.title {
 			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-			font-size: 3em;
+			font-size: 1.5em;
 			margin: 10px;
-			margin-bottom: 52px;
+			margin-bottom: 60px;
 			word-break: break-word;
+		}
+		p {
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 1.2em;
+			margin: 10px;
+			color: rgb(0, 0, 0);
 		}
 
 		@media only screen and (min-width: 650px) {
-			min-width: none;
+			.title {
+				font-size: 3em;
+				margin-bottom: 0px;
+			}
+			p {
+				font-size: 1.6em;
+			}
 		}
 	}
 </style>
