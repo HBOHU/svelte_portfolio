@@ -7,9 +7,9 @@
 	import gridHelp from 'svelte-grid/build/helper/index.mjs';
 
 	const columns = 12;
-	const projectData = projectsObject;
+	const projectData = projectsObject.sort(() => Math.random() - 0.5);
 
-	// TODO: make function global
+	// TODO: make function global => MobileMenu.svelte
 	const isMobileView = () => {
 		return true;
 	};
