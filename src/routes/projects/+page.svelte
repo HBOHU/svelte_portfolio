@@ -3,7 +3,7 @@
 	import IconLink from '$lib/assets/svg/icon-link.svelte';
 	import projectsObject from '$lib/assets/projects.json';
 
-	import Grid from 'svelte-grid';
+	import Grid from 'svelte-grid/src/index.svelte';
 	import gridHelp from 'svelte-grid/build/helper/index.mjs';
 
 	const columns = 12;
