@@ -90,6 +90,7 @@
 		let:resizePointerDown
 		fillSpace={true}
 	>
+		<!-- ! Every time you come back to this page the BG color from the cards disapears -->
 		<div class="project-card" style="background-color: {dataItem.data.color};">
 			<h1 class="title">{dataItem.data.title}</h1>
 			<p>{dataItem.data.description}</p>

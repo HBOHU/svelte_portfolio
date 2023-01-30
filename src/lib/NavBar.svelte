@@ -21,7 +21,6 @@
 		</a>
 
 		<div class={`navbar-list ${isMobileMenuOpen ? ' mobile' : ''}`}>
-			<!-- TODO: add arrows for both sides -->
 			<a on:click={handleMobileIconClick} href="/projects">PROJECTS</a>
 			<a on:click={handleMobileIconClick} href="/coffee">COFFEE </a>
 		</div>
