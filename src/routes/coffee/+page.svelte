@@ -1,21 +1,18 @@
 <script>
-	import Typewriter from 'svelte-typewriter';
-	import Comp1 from '$lib/demo/in-fast-slow-out.svelte';
-	import Comp2 from '$lib/demo/key-mover.svelte';
-	import Comp3 from '$lib/demo/scroll.svelte';
-
-	const newTypeWritterTyped = () => {
-		// console.log('test');
-	};
+	import IconCoffee from '$lib/assets/svg/icon-coffee.svelte';
+	import StaticForm from '$lib/StaticForm.svelte';
 </script>
 
-<Typewriter on:done={newTypeWritterTyped} mode={'loopRandom'} cursor{false}>
-	<h1>Testing effect</h1>
-	<h1>effect</h1>
-</Typewriter>
+<div class="wrapper">
+	<IconCoffee />
+</div>
+<StaticForm />
 
-<Comp1 />
-<Comp2 />
-<Comp3 />
-
-hello
+<style>
+	.wrapper {
+		position: absolute;
+		right: 0;
+		margin: 90px;
+		width: 420px;
+	}
+</style>
