@@ -1,6 +1,4 @@
 <script>
-	import { ismobileView } from '$lib/stores/main.js';
-
 	import MobileMenu from './MobileMenu.svelte';
 	import IconPeacock from '$lib/assets/svg/icon-peacock.svelte';
 

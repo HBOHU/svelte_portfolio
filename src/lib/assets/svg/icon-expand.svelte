@@ -1,4 +1,33 @@
-<svg fill="#000000" height="16px" width="16px" viewBox="0 0 242.133 242.133" xml:space="preserve">
+<script>
+	import { onMount } from 'svelte';
+	import { gsap } from 'gsap';
+
+	/**
+	 * @type {gsap.TweenTarget}
+	 */
+	let element;
+
+	onMount(() => {
+		gsap.from(element, {
+			lazy: true,
+			scale: 1.4,
+			rotate: 45,
+			repeat: -1,
+			yoyo: true,
+			ease: 'elastic',
+			duration: 3
+		});
+	});
+</script>
+
+<svg
+	bind:this={element}
+	fill="#000000"
+	height="16px"
+	width="16px"
+	viewBox="0 0 242.133 242.133"
+	xml:space="preserve"
+	>fill="#000000" height="16px" width="16px" viewBox="0 0 242.133 242.133" xml:space="preserve">
 	<path
 		id="XMLID_15_"
 		d="M227.133,83.033c8.283,0,15-6.716,15-15V15c0-8.284-6.717-15-15-15H174.1c-8.284,0-15,6.716-15,15
