@@ -1,5 +1,5 @@
 <script>
-	import MobileMenu from './MobileMenu.svelte';
+	import HamburgerMenu from './HamburgerMenu.svelte';
 	import IconPeacock from '$lib/assets/svg/icon-peacock.svelte';
 
 	$: isMobileMenuOpen = false;
@@ -14,7 +14,7 @@
 <nav>
 	<div class="inner">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<MobileMenu bind:isMobileMenuOpen />
+		<HamburgerMenu bind:isMobileMenuOpen />
 
 		<a on:click={handleMobileIconClick} href="/" class="logo-link">
 			<IconPeacock size={62} />

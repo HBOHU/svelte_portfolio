@@ -6,3 +6,9 @@
 <div class="body-wrapper">
 	<slot />
 </div>
+
+<style>
+	.body-wrapper {
+		padding-top: 21px;
+	}
+</style>
