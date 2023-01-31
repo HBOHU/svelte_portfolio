@@ -11,7 +11,7 @@
 
 <div class="type-wrapper">
 	<h1>Stijn van der Pouw /</h1>
-	<Typewriter mode={'loopRandom'} cursor{false}>
+	<Typewriter mode={'loopRandom'} interval={110} delay={400}>
 		{#each typedTitles as title}
 			<h1>{title}</h1>
 		{/each}
@@ -22,8 +22,8 @@
 	.type-wrapper {
 		--cursor-color: black;
 		--cursor-width: 2px;
-		padding: 25vw;
-		padding-top: 42px;
+		position: relative;
+		padding: 100px 20px 0 10vw;
 		h1 {
 			font-size: 3em;
 			font-family: monospace;
@@ -35,7 +35,7 @@
 	}
 	@media only screen and (min-width: 650px) {
 		.type-wrapper {
-			padding: 0 calc(50% - 220px);
+			padding: 0 calc(50% - 200px);
 			padding-top: calc(45vh - 280px);
 
 			h1 {

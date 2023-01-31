@@ -20,25 +20,27 @@
 				).slice(-2);
 			return lightHexColor;
 		} else {
-			return '#' + color;
+			return color;
 		}
 	};
 	// TODO: cries for optimalization
-	const mobileSize = (/** @type {number} */ i, /** @type {{ title: any; color: any; }} */ item) => {
-		let projectTitle = item.title;
+	const mobileSize = (
+		/** @type {number} */ i,
+		/** @type {{ title: string; color: string; }} */ item
+	) => {
 		return {
 			[columns]: gridHelp.item({
 				x: i,
 				y: i,
 				w: 6,
-				h: Math.floor(projectTitle.length / 7) + 1,
+				h: Math.floor(item.title.length / 7) + 1,
 				min: {
 					w: 6,
 					h: 2
 				}
 			}),
 			id: i,
-			data: Object.assign(item, { color: randomHexColorCode(item.color || undefined) })
+			data: Object.assign(item, { color: randomHexColorCode(item.color) })
 		};
 	};
 	// TODO: cries for optimalization too
@@ -60,15 +62,15 @@
 				}
 			}),
 			id: i,
-			data: Object.assign(item, { color: randomHexColorCode(item.color || undefined) })
+			data: Object.assign(item, { color: randomHexColorCode(item.color) })
 		};
 	};
 
 	/**
-	 * @param {any[]} data
+	 * @param {any[]} projectData
 	 */
-	function generateLayout(data) {
-		return data.map(function (/** @type {any} */ item, /** @type {number} */ i) {
+	function generateLayout(projectData) {
+		return projectData.map(function (/** @type {any} */ item, /** @type {number} */ i) {
 			if ($ismobileView) {
 				return mobileSize(i, item);
 			} else {
